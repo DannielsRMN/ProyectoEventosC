@@ -1,32 +1,47 @@
-<?php
-// 1. Capturamos qué controlador y qué acción quiere el usuario
-// Si no envía nada, por defecto vamos a 'Usuario' y 'login'
-$controller = isset($_GET['controller']) ? $_GET['controller'] : 'Usuario';
-$action = isset($_GET['action']) ? $_GET['action'] : 'login';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/proyectoeventosc/Frontend/assets/css/index.css">
+    <title>EventosC | Pantalla Principal</title>
+</head>
+<body>
+    
+    <nav>
+        <button>Historial</button>
+        <button>Servicios</button>
+        <h2>EventosC</h2>
+        <button>Reseñas</button>
+        <button>Nosotros</button>
+    </nav>
+    <div>
 
-// 2. Construimos el nombre de la Clase y del Archivo
-// Ejemplo: Si controller="usuario", buscamos "UsuarioController"
-$controllerName = ucfirst($controller) . 'Controller'; 
-$controllerFile = 'controllers/' . $controllerName . '.php';
+        <div class="first">
+            <video src="/proyectoeventosc/assets/img/background.mp4" autoplay muted loop></video>
+        </div>
 
-// 3. Verificamos si el archivo existe
-if (file_exists($controllerFile)) {
-    require_once $controllerFile;
-    if (class_exists($controllerName)) {
-        
-        $object = new $controllerName();
-        if (method_exists($object, $action)) {
-            $object->$action();
-            
-        } else {
-            echo "Error 404: La acción '<b>$action</b>' no existe en el controlador $controllerName.";
-        }
+        <div class="content">
+            <div class="desc">
+                <h2>Bienvenidos a EventosC</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae laborum sint, repellendus hic unde dicta ut. Voluptatum officia repudiandae hic totam, consequuntur corrupti! Perspiciatis mollitia iusto numquam tempore a? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quae voluptates consequatur tempore quam maxime et, incidunt necessitatibus vero veritatis tempora eveniet autem mollitia repellendus ipsum expedita distinctio illum a.</p>
 
-    } else {
-        echo "Error: La clase '<b>$controllerName</b>' no está definida correctamente.";
-    }
+                <button>Reserva Aquí</button>
+            </div>
+        </div>
 
-} else {
-    echo "Error 404: El controlador '<b>$controllerName</b>' no existe en la carpeta controllers.";
-}
-?>
+        <div class="sep">
+            <hr>
+        </div>
+
+        <div class="">
+
+        </div>
+
+    </div>
+    <footer>
+
+    </footer>
+
+</body>
+</html>
