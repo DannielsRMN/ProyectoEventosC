@@ -18,7 +18,7 @@
     <div>
 
         <div class="first">
-            <video src="/proyectoeventosc/assets/img/background.mp4" autoplay muted loop></video>
+            <video src="/proyectoeventosc//Frontend/assets/img/background.mp4" autoplay muted loop></video>
         </div>
 
         <div class="content">
