@@ -86,7 +86,7 @@ nav h2{
 .content{
     font-family: 'Helvetica', sans-serif;
     width: 100%;
-    height: 60vh;
+    height: 50vh;
 
     display: flex;
     justify-content: center;
@@ -95,7 +95,6 @@ nav h2{
 
 .desc{
     width: 60%;
-    height: 70%;
     text-align: center;
 }
 
