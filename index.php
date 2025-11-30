@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +22,7 @@
     <div>
 
         <div class="first">
-            <video src="/proyectoeventosc//Frontend/assets/img/background.mp4" autoplay muted loop></video>
+            <video src="/proyectoeventosc/Frontend/assets/img/background.mp4" autoplay muted loop></video>
         </div>
 
         <div class="content">
@@ -26,7 +30,7 @@
                 <h2>Bienvenidos a EventosC</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae laborum sint, repellendus hic unde dicta ut. Voluptatum officia repudiandae hic totam, consequuntur corrupti! Perspiciatis mollitia iusto numquam tempore a? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quae voluptates consequatur tempore quam maxime et, incidunt necessitatibus vero veritatis tempora eveniet autem mollitia repellendus ipsum expedita distinctio illum a.</p>
 
-                <button>Reserva Aquí</button>
+                <a href="../ProyectoEventosC/Frontend/views/login.php" class="btn"><button>Reserva Aquí</button></a>
             </div>
         </div>
 
