@@ -1,11 +1,17 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 define('BASE_PATH', __DIR__);
 
+// Incluir archivos necesarios
 require_once 'Backend/config/Conexion.php';
 require_once 'Backend/models/Usuario.php'; 
 require_once 'Backend/models/Sede.php';
 require_once 'Backend/models/Reserva.php';
+require_once 'Backend/models/Admin.php'; 
 
 $view = isset($_GET['view']) ? $_GET['view'] : 'home';
 
@@ -24,6 +30,26 @@ switch ($view) {
         exit;
         break;
 
+   
+    case 'dashboard':
+        
+        $adminModel = new Admin();
+        
+        
+        $reservas = $adminModel->listarReservas();
+        
+       
+        require_once 'Frontend/views/admin/dashboard.php';
+        break;
+
+    case 'cancelar_reserva':
+        require_once 'Frontend/views/admin/cancelar_reserva.php';
+        break;
+    
+    case 'reactivar_reserva':
+        require_once 'Frontend/views/admin/reactivar_reserva.php';
+        break;
+    
     case 'reservas':
         $sedeModel = new Sede();
         $listaSedes = $sedeModel->listar();
@@ -95,8 +121,7 @@ switch ($view) {
                 unset($_SESSION['reserva_temp']);
                 header("Location: index.php?view=detalles&id=$id_reserva");
             } else {
-                echo "<h1>Error Fatal: No se pudo guardar la reserva en la base de datos.</h1>";
-                echo "<p>Verifica que el usuario ID 1 exista en la tabla 'usuario'.</p>";
+                echo "<h1>Error Fatal: No se pudo guardar la reserva.</h1>";
             }
         } else {
             header('Location: index.php?view=reservas');
