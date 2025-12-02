@@ -1,23 +1,24 @@
 <?php
-    session_start();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once __DIR__ . '/../../Backend/controllers/UsuarioControlador.php';
-        $controlador = new UsuarioControlador();
-        
-        $datos = [
-            'email' => $_POST['email'],
-            'password_hash' => $_POST['password']
-        ];
-
-        if ($controlador->login($datos)) {
-            exit;
-        } else {
-            $error = "No se pudo registrar el usuario.";
-        }
-    }
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../../Backend/controllers/UsuarioControlador.php';
+    $controlador = new UsuarioControlador();
     
+
+    $datos = [
+        'email' => $_POST['email'],
+        'password_hash' => $_POST['password']
+    ];
+
+if ($controlador->login($datos)) {
+    header('Location: /../../index.php');
+    exit;
+} else {
+    $error = "Credenciales incorrectas.";
+}
+
+}
+
 ?>
 
 <!DOCTYPE html>
