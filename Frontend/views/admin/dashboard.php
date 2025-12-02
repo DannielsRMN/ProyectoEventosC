@@ -1,3 +1,9 @@
+<?php
+// ============================================
+// UBICACIÓN: Frontend/views/admin/dashboard.php
+// DESCRIPCIÓN: Panel administrativo completo con gestión de eventos y CRUDs
+// ============================================
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,30 +37,87 @@
         }
         
         .admin-header {
-            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1), rgba(57, 255, 20, 0.05));
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.05), rgba(255, 255, 255, 0.02));
             border: 1px solid rgba(57, 255, 20, 0.3);
             backdrop-filter: blur(20px);
             color: white;
             padding: 30px 40px;
             border-radius: 15px;
             margin-bottom: 40px;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.05);
         }
         
         .admin-header h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
-            color: #39ff14;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.3); 
             margin: 0;
         }
         
         .admin-header p {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 1.3rem;
             margin-top: 10px;
+        }
+
+        /* NAVEGACIÓN DE GESTIÓN */
+        .admin-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-nav {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            color: #39ff14;
+            padding: 20px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-nav:hover {
+            background: #39ff14;
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+
+        /* BOTÓN CREAR EVENTO */
+        .btn-crear-evento {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #39ff14, #00ff88);
+            color: black;
+            padding: 15px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .btn-crear-evento:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
         }
         
         .stats-grid {
@@ -65,9 +128,9 @@
         }
         
         .stat-card {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(20, 20, 20, 0.8);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 30px;
             text-align: center;
@@ -83,7 +146,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(57, 255, 20, 0.03), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
             transform: rotate(45deg);
             transition: 0.5s;
         }
@@ -91,7 +154,7 @@
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: #39ff14;
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
         }
         
         .stat-card:hover::before {
@@ -107,12 +170,12 @@
             font-size: 3.5rem;
             margin-bottom: 15px;
             color: #39ff14;
-            text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
+            text-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
         }
         
         .stat-card h3 {
             font-family: 'Orbitron', sans-serif;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
             margin-bottom: 10px;
             text-transform: uppercase;
@@ -123,28 +186,51 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
             font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .alert {
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .alert-success {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid #39ff14;
             color: #39ff14;
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+        }
+        
+        .alert-error {
+            background: rgba(255, 85, 85, 0.1);
+            border: 1px solid #ff5555;
+            color: #ff5555;
         }
         
         .table-container {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(15, 15, 15, 0.85);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(57, 255, 255, 0.1);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         }
         
         .table-header {
-            background: linear-gradient(135deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.05));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
             padding: 20px 30px;
-            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .table-header h2 {
             font-family: 'Orbitron', sans-serif;
-            color: #39ff14;
+            color: #ffffff;
             font-size: 1.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -157,7 +243,7 @@
         }
         
         .admin-table thead {
-            background: rgba(57, 255, 20, 0.05);
+            background: rgba(255, 255, 255, 0.02);
             border-bottom: 2px solid rgba(57, 255, 20, 0.3);
         }
         
@@ -165,7 +251,7 @@
             font-family: 'Orbitron', sans-serif;
             padding: 18px 20px;
             text-align: left;
-            color: #39ff14;
+            color: #ffffff;
             font-size: 1.2rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -175,7 +261,7 @@
         .admin-table td {
             padding: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: white;
+            color: #eeeeee;
             font-size: 1.3rem;
         }
         
@@ -185,17 +271,17 @@
         
         .admin-table tbody tr:hover {
             background: rgba(57, 255, 20, 0.05);
-            transform: scale(1.01);
+            transform: scale(1.002);
         }
         
         .id-badge {
             font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, rgba(57, 255, 20, 0.2), rgba(57, 255, 20, 0.1));
-            color: #39ff14;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             padding: 5px 12px;
             border-radius: 5px;
             font-weight: bold;
-            border: 1px solid rgba(57, 255, 20, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: inline-block;
         }
         
@@ -207,17 +293,19 @@
         
         .client-name {
             font-weight: 600;
-            color: white;
+            color: #ffffff;
+            font-size: 1.1em;
         }
         
         .client-email {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
         }
         
         .event-name {
             font-weight: 600;
-            color: #39ff14;
+            color: #ffffff;
+            letter-spacing: 0.5px;
         }
         
         .date-time {
@@ -228,10 +316,11 @@
         
         .date-text {
             font-weight: 600;
+            color: #fff;
         }
         
         .time-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: rgba(255, 255, 255, 0.6);
         }
         
@@ -239,7 +328,8 @@
             font-family: 'Orbitron', sans-serif;
             font-weight: bold;
             font-size: 1.4rem;
-            color: #39ff14;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
         .status-badge {
@@ -254,38 +344,38 @@
             border: 1px solid;
         }
         
-        .status-confirmado {
+        .status-confirmado, .status-Confirmado {
             background: rgba(57, 255, 20, 0.1);
             color: #39ff14;
             border-color: #39ff14;
             box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
         }
         
-        .status-borrador {
+        .status-borrador, .status-Borrador {
             background: rgba(255, 193, 7, 0.1);
             color: #ffc107;
             border-color: #ffc107;
         }
         
-        .status-cancelado {
+        .status-cancelado, .status-Cancelado {
             background: rgba(255, 85, 85, 0.1);
             color: #ff5555;
             border-color: #ff5555;
         }
         
-        .status-pagado {
+        .status-pagado, .status-Pagado {
             background: rgba(0, 200, 255, 0.1);
             color: #00c8ff;
             border-color: #00c8ff;
         }
         
-        .status-pendiente {
+        .status-pendiente, .status-Pendiente {
             background: rgba(255, 85, 85, 0.1);
             color: #ff5555;
             border-color: #ff5555;
         }
         
-        .status-parcial {
+        .status-parcial, .status-Parcial {
             background: rgba(255, 193, 7, 0.1);
             color: #ffc107;
             border-color: #ffc107;
@@ -295,73 +385,61 @@
             display: flex;
             gap: 10px;
             justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-action {
+            font-family: 'Orbitron', sans-serif;
+            background: transparent;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid;
+        }
+
+        .btn-edit {
+            color: #00c8ff;
+            border-color: #00c8ff;
+        }
+
+        .btn-edit:hover {
+            background: #00c8ff;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
         }
         
         .btn-cancel {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, #ff5555, #ff3333);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 15px rgba(255, 85, 85, 0.3);
+            color: #ff5555;
+            border-color: #ff5555;
         }
         
         .btn-cancel:hover {
-            background: linear-gradient(135deg, #ff3333, #ff0000);
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(255, 85, 85, 0.5);
+            background: #ff5555;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255, 85, 85, 0.4);
         }
         
         .btn-reactivar {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, #39ff14, #2ecc11);
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            color: #39ff14;
+            border-color: #39ff14;
         }
         
         .btn-reactivar:hover {
-            background: linear-gradient(135deg, #2ecc11, #25a00f);
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(57, 255, 20, 0.5);
-        }
-        
-        .btn-disabled {
-            font-family: 'Orbitron', sans-serif;
-            background: rgba(100, 100, 100, 0.3);
-            color: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: not-allowed;
-            display: inline-block;
+            background: #39ff14;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
         }
         
         .empty-state {
@@ -372,21 +450,15 @@
         
         .empty-icon {
             font-size: 8rem;
-            color: rgba(57, 255, 20, 0.3);
+            color: rgba(255, 255, 255, 0.1);
             margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
         }
         
         .empty-state h2 {
             font-family: 'Orbitron', sans-serif;
-            color: rgba(255, 255, 255, 0.7);
+            color: #ffffff;
             font-size: 2rem;
             margin-bottom: 15px;
-        }
-        
-        .empty-state p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.5);
         }
         
         .btn-back {
@@ -397,8 +469,8 @@
             margin-top: 40px;
             padding: 15px 35px;
             background: transparent;
-            color: #39ff14;
-            border: 2px solid #39ff14;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
@@ -410,9 +482,10 @@
         }
         
         .btn-back:hover {
-            background: #39ff14;
+            background: white;
             color: black;
-            box-shadow: 0 0 25px rgba(57, 255, 20, 0.4);
+            border-color: white;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
             transform: translateX(-5px);
         }
     </style>
@@ -424,20 +497,71 @@
     <div class="admin-wrapper">
         <div class="admin-container">
             
-            
+            <!-- HEADER -->
             <div class="admin-header">
                 <h1>⚡ Panel de Administración</h1>
-                <p>Gestión y control de reservas y eventos del sistema</p>
+                <p>Gestión y control de eventos y reservas del sistema</p>
             </div>
+
+            <!-- NAVEGACIÓN DE GESTIÓN -->
+            <div class="admin-nav">
+                <a href="index.php?view=listar_sedes" class="btn-nav">
+                    <span class="material-symbols-rounded">business</span>
+                    Gestionar Sedes
+                </a>
+                
+                <a href="index.php?view=listar_clientes" class="btn-nav">
+                    <span class="material-symbols-rounded">group</span>
+                    Gestionar Clientes
+                </a>
+
+                <a href="index.php?view=listar_recursos" class="btn-nav">
+                    <span class="material-symbols-rounded">inventory_2</span>
+                    Gestionar Recursos
+                </a>
+
+                <a href="index.php?view=listar_proveedores" class="btn-nav">
+                    <span class="material-symbols-rounded">local_shipping</span>
+                    Gestionar Proveedores
+                </a>
+
+                <a href="index.php?view=listar_servicios" class="btn-nav">
+                    <span class="material-symbols-rounded">build</span>
+                    Gestionar Servicios
+                </a>
+            </div>
+
+            <!-- BOTÓN CREAR NUEVO EVENTO -->
+            <div style="margin-bottom: 30px; text-align: right;">
+                <a href="index.php?view=crear_evento" class="btn-crear-evento">
+                    <span class="material-symbols-rounded">add_circle</span>
+                    Crear Nuevo Evento
+                </a>
+            </div>
+
+            <!-- MENSAJES -->
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="alert alert-success">
+                    <span class="material-symbols-rounded">check_circle</span>
+                    <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="alert alert-error">
+                    <span class="material-symbols-rounded">error</span>
+                    <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                </div>
+            <?php endif; ?>
 
             <?php if (!empty($reservas) && is_array($reservas) && count($reservas) > 0): ?>
                 
-                
+                <!-- ESTADÍSTICAS -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon">📋</div>
-                        <h3>Total Reservas</h3>
-                        <div class="stat-number"><?php echo count($reservas); ?></div>
+                        <h3>Total Eventos</h3>
+                        <div class="stat-number"><?php echo isset($estadisticas['total_reservas']) ? $estadisticas['total_reservas'] : count($reservas); ?></div>
                     </div>
                     
                     <div class="stat-card">
@@ -445,9 +569,13 @@
                         <h3>Confirmados</h3>
                         <div class="stat-number">
                             <?php 
-                            echo count(array_filter($reservas, function($r) { 
-                                return strtolower($r['estado_evento']) == 'confirmado'; 
-                            })); 
+                            if (isset($estadisticas['eventos_activos'])) {
+                                echo $estadisticas['eventos_activos'];
+                            } else {
+                                echo count(array_filter($reservas, function($r) { 
+                                    return strtolower($r['estado_evento']) == 'confirmado'; 
+                                })); 
+                            }
                             ?>
                         </div>
                     </div>
@@ -455,14 +583,37 @@
                     <div class="stat-card">
                         <div class="stat-icon">💰</div>
                         <h3>Ingresos Total</h3>
-                        <div class="stat-number">S/ <?php echo number_format(array_sum(array_column($reservas, 'monto_pagado')), 2); ?></div>
+                        <div class="stat-number">
+                            S/ <?php 
+                            if (isset($estadisticas['ingresos_totales'])) {
+                                echo number_format($estadisticas['ingresos_totales'], 2);
+                            } else {
+                                echo number_format(array_sum(array_column($reservas, 'monto_pagado')), 2);
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <h3>Total Clientes</h3>
+                        <div class="stat-number">
+                            <?php 
+                            if (isset($estadisticas['total_clientes'])) {
+                                echo $estadisticas['total_clientes'];
+                            } else {
+                                $clientes_unicos = array_unique(array_column($reservas, 'id_cliente'));
+                                echo count($clientes_unicos);
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
 
-               
+                <!-- TABLA DE RESERVAS -->
                 <div class="table-container">
                     <div class="table-header">
-                        <h2>🎯 Gestión de Reservas</h2>
+                        <h2>🎯 Gestión de Eventos y Reservas</h2>
                     </div>
                     
                     <table class="admin-table">
@@ -515,38 +666,40 @@
                                     
                                     <td>
                                         <?php 
-                                        $estado_pago = isset($row['estado_pago']) ? strtolower($row['estado_pago']) : 'pendiente';
-                                        $texto_pago = isset($row['estado_pago']) ? $row['estado_pago'] : 'Pendiente';
+                                        $estado_pago = isset($row['estado_pago']) ? $row['estado_pago'] : 'Pendiente';
                                         ?>
                                         <span class="status-badge status-<?php echo $estado_pago; ?>">
-                                            <?php echo htmlspecialchars($texto_pago); ?>
+                                            <?php echo htmlspecialchars($estado_pago); ?>
                                         </span>
                                     </td>
                                     
                                     <td>
-                                        <?php 
-                                        $estado_evento = strtolower($row['estado_evento']);
-                                        ?>
-                                        <span class="status-badge status-<?php echo $estado_evento; ?>">
+                                        <span class="status-badge status-<?php echo $row['estado_evento']; ?>">
                                             <?php echo htmlspecialchars($row['estado_evento']); ?>
                                         </span>
                                     </td>
                                     
                                     <td>
                                         <div class="action-buttons">
+                                            <!-- BOTÓN EDITAR -->
+                                            <a href="index.php?view=editar_evento&id=<?php echo $row['id_evento']; ?>" 
+                                               class="btn-action btn-edit"
+                                               title="Editar evento">
+                                                <span class="material-symbols-rounded">edit</span>
+                                                Editar
+                                            </a>
+
                                             <?php if(strtolower($row['estado_evento']) == 'cancelado'): ?>
-                                                
                                                 <a href="index.php?view=reactivar_reserva&id=<?php echo $row['id_reserva']; ?>" 
-                                                   class="btn-reactivar"
-                                                   onclick="return confirm('✅ ¿REACTIVAR ESTE EVENTO?\n\n🎯 Evento: <?php echo addslashes($row['nombre_evento']); ?>\n👤 Cliente: <?php echo addslashes($row['cliente']); ?>\n📅 Fecha: <?php echo date('d/m/Y', strtotime($row['fecha_evento'])); ?>\n\n⚡ El evento volverá a estar CONFIRMADO.');">
+                                                   class="btn-action btn-reactivar"
+                                                   onclick="return confirm('✅ ¿REACTIVAR ESTE EVENTO?\n\n🎯 Evento: <?php echo addslashes($row['nombre_evento']); ?>\n👤 Cliente: <?php echo addslashes($row['cliente']); ?>\n📅 Fecha: <?php echo date('d/m/Y', strtotime($row['fecha_evento'])); ?>');">
                                                     <span class="material-symbols-rounded">check_circle</span>
                                                     Reactivar
                                                 </a>
                                             <?php else: ?>
-                                                
                                                 <a href="index.php?view=cancelar_reserva&id=<?php echo $row['id_reserva']; ?>" 
-                                                   class="btn-cancel"
-                                                   onclick="return confirm('⚠️ ¿CANCELAR ESTE EVENTO?\n\n🎯 Evento: <?php echo addslashes($row['nombre_evento']); ?>\n👤 Cliente: <?php echo addslashes($row['cliente']); ?>\n📅 Fecha: <?php echo date('d/m/Y', strtotime($row['fecha_evento'])); ?>\n\n⚡ Podrás reactivarlo después si es necesario.');">
+                                                   class="btn-action btn-cancel"
+                                                   onclick="return confirm('⚠️ ¿CANCELAR ESTE EVENTO?\n\n🎯 Evento: <?php echo addslashes($row['nombre_evento']); ?>\n👤 Cliente: <?php echo addslashes($row['cliente']); ?>\n📅 Fecha: <?php echo date('d/m/Y', strtotime($row['fecha_evento'])); ?>');">
                                                     <span class="material-symbols-rounded">cancel</span>
                                                     Cancelar
                                                 </a>
@@ -561,19 +714,19 @@
 
             <?php else: ?>
                 
-                
+                <!-- ESTADO VACÍO -->
                 <div class="table-container">
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
-                        <h2>No hay reservas registradas</h2>
-                        <p>Aún no se han realizado reservas en el sistema.</p>
-                        <p>Las nuevas reservas aparecerán aquí automáticamente.</p>
+                        <h2>No hay eventos registrados</h2>
+                        <p>Aún no se han creado eventos en el sistema.</p>
+                        <p>Los nuevos eventos aparecerán aquí automáticamente.</p>
                     </div>
                 </div>
 
             <?php endif; ?>
 
-           
+            <!-- BOTÓN VOLVER -->
             <a href="index.php?view=home" class="btn-back">
                 <span class="material-symbols-rounded">arrow_back</span>
                 Volver al Inicio
