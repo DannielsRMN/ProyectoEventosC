@@ -6,11 +6,10 @@ create table usuario(
 	nombre_completo varchar(100) not null,
 	email varchar(100) not null unique,
     password_hash varchar(150) not null,
-    rol enum ('Admin', 'Cliente') default ('Cliente'),
+    rol varchar(150) default ('Cliente'),
     
     tarjeta varchar(16) null unique,
-    fecha_vencimiento date null,
-    cvv char(3) null
+    fecha_vencimiento date null
 );
 
 create table sede(
