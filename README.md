@@ -18,6 +18,8 @@
 
 🗣️ **RAUL CALDAS SIFUENTES**
 
+🗣️**VICTOR DANIEL COLQUI GUILLERMO**
+
 **Descripción del Proyecto: La empresa de eventos C organiza fiestas y reuniones, pero su gestión manual de reservas
 ocasiona solapamientos y errores. Requiere una plataforma para administrar reservas,
 asignar recursos y coordinar con los proveedores.**

@@ -28,6 +28,13 @@
                 </button>
             </a>
             
+            <a href="index.php?view=dashboard">
+                <button type="button" class="btn-admin">
+                    <span class="material-symbols-rounded">admin_panel_settings</span>
+                    Panel Admin
+                </button>
+            </a>
+            
             <div class="nav-divider"></div>
 
             <?php if(isset($_SESSION['id_usuario'])): ?>
@@ -48,3 +55,17 @@
         </div>
     </nav>
 </header>
+
+<style>
+    .btn-admin {
+        background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+        color: white !important;
+        font-weight: 600;
+    }
+    
+    .btn-admin:hover {
+        background: linear-gradient(135deg, #c0392b, #a93226) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+    }
+</style>
