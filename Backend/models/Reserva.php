@@ -11,12 +11,15 @@ class Reserva {
 
     public function registrar($datos) {
         try {
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
             $this->conn->beginTransaction();
 
             $sqlEvento = "INSERT INTO evento (id_cliente, id_sede, nombre_evento, fecha_evento, hora_inicio, hora_fin, estado) 
                           VALUES (:id_cliente, :id_sede, :nombre, :fecha, :inicio, :fin, 'Confirmado')";
             
             $stmt = $this->conn->prepare($sqlEvento);
+            
             $stmt->execute([
                 ':id_cliente' => $datos['id_usuario'],
                 ':id_sede'    => $datos['id_sede'],
@@ -29,7 +32,7 @@ class Reserva {
             $idEventoCreado = $this->conn->lastInsertId();
 
             $sqlReserva = "INSERT INTO reserva (id_evento, fecha_reserva, costo_total, monto_pagado, estado_pago) 
-                           VALUES (:id_evento, NOW(), :total, :pagado, 'Pagado')";
+                           VALUES (:id_evento, CURDATE(), :total, :pagado, 'Pagado')";
             
             $stmt2 = $this->conn->prepare($sqlReserva);
             $stmt2->execute([
@@ -45,6 +48,17 @@ class Reserva {
 
         } catch (Exception $e) {
             $this->conn->rollBack();
+            
+            echo '<div style="background: #222; color: #ff4444; padding: 20px; font-family: monospace; z-index: 9999; position: relative;">';
+            echo '<h2>ERROR SQL DETECTADO:</h2>';
+            echo '<strong>Mensaje:</strong> ' . $e->getMessage() . '<br><br>';
+            echo '<strong>Archivo:</strong> ' . $e->getFile() . ' (Línea ' . $e->getLine() . ')<br><br>';
+            echo '<strong>Datos recibidos:</strong><pre>';
+            print_r($datos);
+            echo '</pre>';
+            echo '</div>';
+            die();
+            
             return false;
         }
     }

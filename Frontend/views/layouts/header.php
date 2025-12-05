@@ -28,7 +28,6 @@
                 </button>
             </a>
             
-            <!-- NUEVO: Botón Panel Admin -->
             <a href="index.php?view=dashboard">
                 <button type="button" class="btn-admin">
                     <span class="material-symbols-rounded">admin_panel_settings</span>
@@ -58,7 +57,6 @@
 </header>
 
 <style>
-    /* Estilo especial para el botón de admin */
     .btn-admin {
         background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
         color: white !important;
