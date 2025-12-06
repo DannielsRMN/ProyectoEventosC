@@ -1,11 +1,10 @@
 <?php
-// MÓDULO: CLIENTES
-// Color Identidad: AZUL NEÓN (#3b82f6)
+
 
 $clienteModel = new Cliente();
 $alerta = null;
 
-// --- LÓGICA DEL CONTROLADOR (INTACTA) ---
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'] ?? '';
     try {
@@ -44,7 +43,7 @@ require_once 'Frontend/views/layouts/admin_header.php';
 
 <style>
     .static-card {
-        background-color: #030303 !important; /* Fondo negro sólido */
+        background-color: #030303 !important;
         backdrop-filter: none !important;
         cursor: default !important;
     }
@@ -213,16 +212,16 @@ require_once 'Frontend/views/layouts/admin_header.php';
         document.getElementById('input-nombre').value = data.nombre_completo;
         document.getElementById('input-email').value = data.email;
         
-        // UI Updates
+
         const title = document.getElementById('form-title');
         title.innerHTML = '<span class="material-symbols-rounded text-green-400">edit_square</span> EDITANDO: ' + data.nombre_completo.split(' ')[0];
         title.classList.add('text-green-400');
         
-        // Cambio de Botón (Texto + Icono + Color)
+
         const btn = document.getElementById('btn-submit');
         document.getElementById('btn-text').textContent = 'ACTUALIZAR DATOS';
         btn.querySelector('.material-symbols-rounded').textContent = 'sync';
-        // Quitamos azul, ponemos verde
+
         btn.classList.remove('bg-blue-600', 'hover:bg-blue-500', 'shadow-blue-900/40');
         btn.classList.add('bg-green-600', 'hover:bg-green-500', 'shadow-green-900/40');
         
@@ -245,11 +244,11 @@ require_once 'Frontend/views/layouts/admin_header.php';
         title.innerHTML = '<span class="text-blue-500 material-symbols-rounded">add_circle</span> NUEVO CLIENTE';
         title.classList.remove('text-green-400');
 
-        // Reset Botón
+
         const btn = document.getElementById('btn-submit');
         document.getElementById('btn-text').textContent = 'GUARDAR CLIENTE';
         btn.querySelector('.material-symbols-rounded').textContent = 'save';
-        // Quitamos verde, ponemos azul
+
         btn.classList.remove('bg-green-600', 'hover:bg-green-500', 'shadow-green-900/40');
         btn.classList.add('bg-blue-600', 'hover:bg-blue-500', 'shadow-blue-900/40');
         

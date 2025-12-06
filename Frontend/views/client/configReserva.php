@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurar Fecha | EventosC</title>
     <link rel="stylesheet" href="Frontend/assets/css/index.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
 
@@ -79,8 +81,10 @@
             padding: 40px;
         }
 
-        .form-section { margin-bottom: 30px; }
-        
+        .form-section {
+            margin-bottom: 30px;
+        }
+
         .form-label {
             display: block;
             color: white;
@@ -114,11 +118,20 @@
             border-color: white;
             background-color: rgba(255, 255, 255, 0.1);
         }
-        
-        .input-elegant option { background: #111; color: white; }
 
-        .row { display: flex; gap: 20px; }
-        .col { flex: 1; }
+        .input-elegant option {
+            background: #111;
+            color: white;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .col {
+            flex: 1;
+        }
 
         .btn-continue {
             width: 100%;
@@ -141,21 +154,24 @@
         }
 
         @media (max-width: 768px) {
-            .config-container { grid-template-columns: 1fr; }
+            .config-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <?php require_once 'Frontend/views/layouts/header.php'; ?>
 
     <div class="config-wrapper">
         <div class="config-container">
-            
+
             <div class="venue-summary">
                 <p class="summary-title">Espacio Seleccionado</p>
                 <h1 class="venue-name-big"><?php echo $sedeInfo['nombre']; ?></h1>
-                
+
                 <div class="venue-spec">
                     <span class="material-symbols-rounded">location_on</span>
                     <?php echo $sedeInfo['direccion']; ?>
@@ -166,7 +182,7 @@
                 </div>
 
                 <div class="divider"></div>
-                
+
                 <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">
                     Estás a un paso de reservar este espacio. Utiliza el calendario para verificar disponibilidad.
                 </p>
@@ -174,7 +190,7 @@
 
             <div class="config-form-box">
                 <h2 style="color: white; margin-bottom: 30px;">Detalles de la Reserva</h2>
-                
+
                 <form action="index.php?view=procesar_reserva" method="POST" id="formConfig">
                     <input type="hidden" name="id_sede" value="<?php echo $sedeInfo['id_sede']; ?>">
                     <input type="hidden" name="nombre_sede_hidden" value="<?php echo $sedeInfo['nombre']; ?>">
@@ -194,7 +210,8 @@
 
                     <div class="form-section">
                         <label class="form-label">Fecha del Evento</label>
-                        <input type="text" name="fecha" id="input_fecha" class="input-elegant calendar-input" placeholder="Selecciona una fecha..." required>
+                        <input type="text" name="fecha" id="input_fecha" class="input-elegant calendar-input"
+                            placeholder="Selecciona una fecha..." required>
                     </div>
 
                     <div class="row form-section">
@@ -221,14 +238,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
-    
+
     <script>
         flatpickr("#input_fecha", {
             locale: "es",
             minDate: "today",
             dateFormat: "Y-m-d",
             theme: "dark",
-            onChange: function(selectedDates, dateStr, instance) {
+            onChange: function (selectedDates, dateStr, instance) {
                 actualizarNombre();
             }
         });
@@ -236,7 +253,7 @@
         function actualizarNombre() {
             const tipo = document.getElementById('select_tipo').value;
             const fecha = document.getElementById('input_fecha').value;
-            const sede = "<?php echo $sedeInfo['nombre']; ?>"; 
+            const sede = "<?php echo $sedeInfo['nombre']; ?>";
 
             if (tipo && fecha) {
                 const nombreAuto = `${tipo} en ${sede} (${fecha})`;
@@ -246,4 +263,5 @@
     </script>
 
 </body>
+
 </html>
