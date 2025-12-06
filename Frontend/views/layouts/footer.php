@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="Frontend/assets/css/footer.css">
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-col brand-col">

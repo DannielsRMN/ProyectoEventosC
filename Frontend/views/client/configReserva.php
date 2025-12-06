@@ -198,13 +198,15 @@
 
                     <div class="form-section">
                         <label class="form-label">Tipo de Evento</label>
-                        <select id="select_tipo" class="input-elegant" required onchange="actualizarNombre()">
+                        <select id="select_tipo" name="id_tipo_evento" class="input-elegant" required
+                            onchange="actualizarNombre()">
                             <option value="" disabled selected>Selecciona el tipo...</option>
-                            <option value="Boda">Boda</option>
-                            <option value="XV Años">XV Años</option>
-                            <option value="Cumpleaños">Cumpleaños</option>
-                            <option value="Corporativo">Reunión Corporativa</option>
-                            <option value="Aniversario">Aniversario</option>
+                            <?php foreach ($tiposEvento as $tipo): ?>
+                                <option value="<?php echo $tipo['id_tipo_evento']; ?>"
+                                    data-nombre="<?php echo htmlspecialchars($tipo['nombre_tipo']); ?>">
+                                    <?php echo htmlspecialchars($tipo['nombre_tipo']); ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
@@ -226,7 +228,7 @@
                     </div>
 
                     <button type="submit" class="btn-continue">
-                        Continuar a Pago
+                        Continuar a la pantalla de Servicios
                     </button>
                 </form>
             </div>
@@ -251,7 +253,8 @@
         });
 
         function actualizarNombre() {
-            const tipo = document.getElementById('select_tipo').value;
+            const select = document.getElementById('select_tipo');
+            const tipo = select.options[select.selectedIndex].getAttribute('data-nombre');
             const fecha = document.getElementById('input_fecha').value;
             const sede = "<?php echo $sedeInfo['nombre']; ?>";
 

@@ -55,10 +55,11 @@ class Recurso
         try {
             $conexion = $this->db->iniciar();
 
-            $sql = "INSERT INTO recurso (nombre_recurso, descripcion, costounidad, stock) 
-                    VALUES (:nombre_recurso, :descripcion, :costounidad, :stock)";
+            $sql = "INSERT INTO recurso (id_proveedor, nombre_recurso, descripcion, costounidad, stock) 
+                    VALUES (:id_proveedor, :nombre_recurso, :descripcion, :costounidad, :stock)";
 
             $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(':id_proveedor', $datos['id_proveedor'], PDO::PARAM_INT);
             $stmt->bindParam(':nombre_recurso', $datos['nombre_recurso'], PDO::PARAM_STR);
             $stmt->bindParam(':descripcion', $datos['descripcion'], PDO::PARAM_STR);
             $stmt->bindParam(':costounidad', $datos['costounidad'], PDO::PARAM_STR);
@@ -78,7 +79,8 @@ class Recurso
             $conexion = $this->db->iniciar();
 
             $sql = "UPDATE recurso 
-                    SET nombre_recurso = :nombre_recurso,
+                    SET id_proveedor = :id_proveedor,
+                        nombre_recurso = :nombre_recurso,
                         descripcion = :descripcion,
                         costounidad = :costounidad,
                         stock = :stock
@@ -86,6 +88,7 @@ class Recurso
 
             $stmt = $conexion->prepare($sql);
             $stmt->bindParam(':id_recurso', $id_recurso, PDO::PARAM_INT);
+            $stmt->bindParam(':id_proveedor', $datos['id_proveedor'], PDO::PARAM_INT);
             $stmt->bindParam(':nombre_recurso', $datos['nombre_recurso'], PDO::PARAM_STR);
             $stmt->bindParam(':descripcion', $datos['descripcion'], PDO::PARAM_STR);
             $stmt->bindParam(':costounidad', $datos['costounidad'], PDO::PARAM_STR);

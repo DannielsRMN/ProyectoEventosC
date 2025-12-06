@@ -103,6 +103,18 @@ switch ($view) {
         $controller->procesar(); // Guarda la reserva en la BD
         break;
 
+    case 'servicios_reserva':
+        require_once 'Backend/controllers/ReservaControlador.php';
+        $controller = new ReservaControlador();
+        $controller->servicios(); // Muestra selección de servicios
+        break;
+
+    case 'agregar_servicios':
+        require_once 'Backend/controllers/ReservaControlador.php';
+        $controller = new ReservaControlador();
+        $controller->agregarServicios(); // Procesa los servicios seleccionados
+        break;
+
     case 'pagos':
         require_once 'Backend/controllers/ReservaControlador.php';
         $controller = new ReservaControlador();
@@ -122,7 +134,10 @@ switch ($view) {
         break;
 
     case 'historial':
-        // (Pendiente) Aquí iría el historial de reservas del usuario.
+    case 'historialReservas': // Compatibilidad con link del usuario
+        require_once 'Backend/controllers/ReservaControlador.php';
+        $controller = new ReservaControlador();
+        $controller->historial(); // Muestra el historial
         break;
 
     // ===========================================

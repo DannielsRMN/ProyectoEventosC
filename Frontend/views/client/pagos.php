@@ -60,7 +60,8 @@
 
                 <div class="ticket-item total">
                     <span>TOTAL A PAGAR</span>
-                    <span>S/ <?php echo number_format($info['costo_estimado'], 2); ?></span>
+                    <span>S/
+                        <?php echo number_format(isset($info['costo_total_final']) ? $info['costo_total_final'] : $info['costo_estimado'], 2); ?></span>
                 </div>
             </div>
 
@@ -105,7 +106,8 @@
                     </div>
 
                     <button type="submit" class="btn-pay">
-                        PAGAR S/ <?php echo number_format($info['costo_estimado'], 2); ?>
+                        PAGAR S/
+                        <?php echo number_format(isset($info['costo_total_final']) ? $info['costo_total_final'] : $info['costo_estimado'], 2); ?>
                     </button>
 
                     <p style="text-align:center; color:#666; font-size:0.7rem; margin-top:15px;">

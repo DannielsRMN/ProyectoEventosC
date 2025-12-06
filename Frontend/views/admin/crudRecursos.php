@@ -1,11 +1,15 @@
 <?php
 $recursoModel = new Recurso();
+$proveedorModel = new Proveedor();
+$proveedores = $proveedorModel->listarProveedores();
+
 $alerta = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'] ?? '';
     try {
         if ($accion === 'crear') {
             $datos = [
+                'id_proveedor' => intval($_POST['id_proveedor']),
                 'nombre_recurso' => trim($_POST['nombre']),
                 'descripcion' => trim($_POST['descripcion']),
                 'costounidad' => floatval($_POST['costo']),
@@ -18,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($accion === 'editar') {
             $id = intval($_POST['id_recurso']);
             $datos = [
+                'id_proveedor' => intval($_POST['id_proveedor']),
                 'nombre_recurso' => trim($_POST['nombre']),
                 'descripcion' => trim($_POST['descripcion']),
                 'costounidad' => floatval($_POST['costo']),
@@ -122,6 +127,25 @@ require_once 'Frontend/views/layouts/admin_header.php';
                 </div>
 
                 <div class="md:col-span-6 flex flex-col justify-end space-y-2">
+                    <label class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest ml-1">Proveedor</label>
+                    <div class="relative group">
+                        <span
+                            class="absolute left-3 top-3 text-gray-500 group-focus-within:text-cyan-500 transition-colors material-symbols-rounded text-xl">local_shipping</span>
+                        <select name="id_proveedor" id="input-proveedor" required
+                            class="w-full bg-[#0a0a0a] border border-[#2a2a2a] text-white pl-10 pr-4 py-3 rounded-lg focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] outline-none transition-all placeholder-gray-700 appearance-none">
+                            <option value="" disabled selected>Seleccione un proveedor...</option>
+                            <?php foreach ($proveedores as $p): ?>
+                                <option value="<?php echo $p['id_proveedor']; ?>">
+                                    <?php echo htmlspecialchars($p['nombre_empresa']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <span
+                            class="absolute right-3 top-3 text-gray-500 pointer-events-none material-symbols-rounded">expand_more</span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-6 flex flex-col justify-end space-y-2">
                     <label
                         class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest ml-1">Descripción</label>
                     <div class="relative group">
@@ -217,14 +241,16 @@ require_once 'Frontend/views/layouts/admin_header.php';
                                 class="bg-black/40 p-3 rounded-lg border border-white/5 text-center group-hover:border-cyan-500/30 transition-colors">
                                 <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Costo Unit.</p>
                                 <p class="text-cyan-400 font-mono text-lg leading-none">S/
-                                    <?php echo number_format($r['costounidad'], 2); ?></p>
+                                    <?php echo number_format($r['costounidad'], 2); ?>
+                                </p>
                             </div>
                             <div
                                 class="bg-black/40 p-3 rounded-lg border border-white/5 text-center group-hover:border-cyan-500/30 transition-colors">
                                 <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Stock</p>
                                 <p
                                     class="text-white font-mono text-lg leading-none <?php echo $lowStock ? 'text-red-500' : ''; ?>">
-                                    <?php echo $r['stock']; ?></p>
+                                    <?php echo $r['stock']; ?>
+                                </p>
                             </div>
                         </div>
 
@@ -257,6 +283,7 @@ require_once 'Frontend/views/layouts/admin_header.php';
 
         document.getElementById('input-accion').value = 'editar';
         document.getElementById('input-id').value = data.id_recurso;
+        document.getElementById('input-proveedor').value = data.id_proveedor;
         document.getElementById('input-nombre').value = data.nombre_recurso;
         document.getElementById('input-descripcion').value = data.descripcion;
         document.getElementById('input-costo').value = data.costounidad;

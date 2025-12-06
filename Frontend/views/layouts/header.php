@@ -7,7 +7,7 @@
                     Explorar
                 </button>
             </a>
-            
+
             <a href="index.php?view=recursos">
                 <button type="button">
                     <span class="material-symbols-rounded">inventory_2</span>
@@ -27,17 +27,17 @@
                     Mis Eventos
                 </button>
             </a>
-            
+
             <a href="index.php?view=dashboard">
                 <button type="button" class="btn-admin">
                     <span class="material-symbols-rounded">admin_panel_settings</span>
                     Panel Admin
                 </button>
             </a>
-            
+
             <div class="nav-divider"></div>
 
-            <?php if(isset($_SESSION['id_usuario'])): ?>
+            <?php if (isset($_SESSION['id_usuario'])): ?>
                 <a href="index.php?view=logout" title="Cerrar Sesión">
                     <button type="button" class="btn-logout">
                         <span class="material-symbols-rounded">logout</span>
@@ -62,7 +62,7 @@
         color: white !important;
         font-weight: 600;
     }
-    
+
     .btn-admin:hover {
         background: linear-gradient(135deg, #c0392b, #a93226) !important;
         transform: translateY(-2px);

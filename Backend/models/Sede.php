@@ -55,13 +55,14 @@ class Sede
         try {
             $conexion = $this->db->iniciar();
 
-            $sql = "INSERT INTO sede (nombre, direccion, capacidad) 
-                    VALUES (:nombre, :direccion, :capacidad)";
+            $sql = "INSERT INTO sede (nombre, direccion, capacidad, precio_base) 
+                    VALUES (:nombre, :direccion, :capacidad, :precio_base)";
 
             $stmt = $conexion->prepare($sql);
             $stmt->bindParam(':nombre', $datos['nombre'], PDO::PARAM_STR);
             $stmt->bindParam(':direccion', $datos['direccion'], PDO::PARAM_STR);
             $stmt->bindParam(':capacidad', $datos['capacidad'], PDO::PARAM_INT);
+            $stmt->bindParam(':precio_base', $datos['precio_base'], PDO::PARAM_STR);
 
             return $stmt->execute();
 
@@ -79,7 +80,8 @@ class Sede
             $sql = "UPDATE sede 
                     SET nombre = :nombre,
                         direccion = :direccion,
-                        capacidad = :capacidad
+                        capacidad = :capacidad,
+                        precio_base = :precio_base
                     WHERE id_sede = :id_sede";
 
             $stmt = $conexion->prepare($sql);
@@ -87,6 +89,7 @@ class Sede
             $stmt->bindParam(':nombre', $datos['nombre'], PDO::PARAM_STR);
             $stmt->bindParam(':direccion', $datos['direccion'], PDO::PARAM_STR);
             $stmt->bindParam(':capacidad', $datos['capacidad'], PDO::PARAM_INT);
+            $stmt->bindParam(':precio_base', $datos['precio_base'], PDO::PARAM_STR);
 
             return $stmt->execute();
 
