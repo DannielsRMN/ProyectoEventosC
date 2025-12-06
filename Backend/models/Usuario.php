@@ -12,54 +12,43 @@ class Usuario
         $this->conn = $conexion->iniciar();
     }
 
-    public function login($email, $password_hash)
+    public function login($email, $password)
     {
-
         try {
-            $sql = "select * from usuario where email = :email";
+            $sql = "SELECT * FROM usuario WHERE email = :email";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
 
-            if ($stmt->rowCount() != 1) {
-                $password = '';
-                foreach ($stmt->fetchAll() as $resultado) {
-                    $password = $resultado['password_hash'];
-                }
+            if ($stmt->rowCount() == 1) {
+                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+                $password_db = $resultado['password_hash'];
 
-                if (password_verify($password_hash, $password)) {
-                    echo 'Exito';
-                    return true;
-                } else {
-                    print 'El usuario y/o contraseña no coinciden.';
-                    return false;
+                if (password_verify($password, $password_db)) {
+                    return $resultado;
                 }
-            } else {
-                print 'El usuario y/o contraseña no coinciden.';
-                return false;
             }
+            return false;
 
         } catch (PDOException $e) {
-            $e->getMessage();
+            error_log($e->getMessage());
             return false;
         }
     }
 
     public function register($nombre_completo, $email, $password_hash)
     {
-
         try {
-            $sql = "insert into usuario(nombre_completo, email, password_hash) values (:nombre, :email, :contrasena)";
+            $sql = "INSERT INTO usuario(nombre_completo, email, password_hash) VALUES (:nombre, :email, :contrasena)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':nombre', $nombre_completo);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':contrasena', $password_hash);
-            if ($stmt->execute()) {
-                return true;
-            }
-            return false;
+
+            return $stmt->execute();
+
         } catch (PDOException $e) {
-            $e->getMessage();
+            error_log($e->getMessage());
             return false;
         }
     }
