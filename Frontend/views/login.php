@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Segoe+UI:wght@400;600;700&display=swap"
         rel="stylesheet">
-
-    <link rel="stylesheet" href="Frontend/assets/css/index.css">
     <link rel="stylesheet" href="Frontend/assets/css/login.css">
+    <!--<link rel="stylesheet" href="Frontend/assets/css/index.css">-->
+
 </head>
 
 <body>
