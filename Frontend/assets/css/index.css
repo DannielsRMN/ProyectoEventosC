@@ -799,12 +799,10 @@ nav button:hover::after {
 }
 
 
-
-/* --- IMPORTACIÓN DE FUENTES --- */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
 
-/* --- RESET BÁSICO --- */
+
 * {
     margin: 0;
     padding: 0;
@@ -816,33 +814,26 @@ html {
     width: 100%;
     height: auto;
     font-size: 62.5%;
-    /* 1rem = 10px */
     scroll-behavior: smooth;
 }
 
-/* --- CUERPO Y FONDO GLOBAL --- */
 body {
     font-family: 'Helvetica', sans-serif;
     font-size: 1.6rem;
-    /* 16px base */
     line-height: 1.5;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
     /* FONDO GLOBAL */
     background-image: url('../img/fondoeventosc.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* Parallax */
-
     color: white;
     position: relative;
 }
 
-/* VIDRIO GLOBAL (CAPA BASE) */
 body::before {
     content: '';
     position: fixed;
@@ -858,32 +849,26 @@ body::before {
 }
 
 /* =========================================================
-   NAVBAR (HEADER) - VERSIÓN FINAL CORREGIDA
+   NAVBAR (HEADER)
    ========================================================= */
 nav {
     width: 100%;
     height: 80px;
     padding: 0 40px;
-
-    /* Vidrio Oscuro (85%) */
     background-color: rgba(0, 0, 0, 0.85);
-
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
 }
 
-/* --- GRUPOS LATERALES (ANTI-ABRAZO) --- */
 .nav-group {
     display: flex;
     align-items: center;
@@ -899,7 +884,6 @@ nav {
     justify-content: flex-end;
 }
 
-/* --- LOGO (CENTRO) --- */
 .logo-link {
     flex: 0 0 auto;
     display: flex;
@@ -920,38 +904,33 @@ nav {
     filter: drop-shadow(0 0 10px #39ff14);
 }
 
-/* --- BOTONES DEL HEADER --- */
+
 nav button {
     font-family: 'Orbitron', sans-serif;
     color: white;
     background: transparent;
     border: 1px solid transparent;
     font-size: 1.3rem;
-    /* Aumentado a 13px reales */
     letter-spacing: 1px;
     cursor: pointer;
     font-weight: 600;
     text-transform: uppercase;
-
     position: relative;
     padding: 10px 5px;
     transition: all 0.3s ease;
-
     display: flex;
     align-items: center;
     gap: 8px;
     white-space: nowrap;
 }
 
-/* ICONOS DENTRO DE BOTONES */
+
 nav button span {
     font-size: 2rem;
-    /* 20px */
     color: white;
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-/* --- ESTADO HOVER (ACTIVACIÓN) --- */
 nav button:hover {
     color: #39ff14;
     text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
@@ -962,7 +941,6 @@ nav button:hover span {
     text-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
 }
 
-/* --- LA LÍNEA VERDE NEÓN --- */
 nav button::after {
     content: '';
     position: absolute;
@@ -983,7 +961,6 @@ nav button:hover::after {
     width: 100%;
 }
 
-/* EXCEPCIONES: Botones Login/Logout */
 .btn-login {
     border: 1px solid #39ff14;
     color: #39ff14 !important;
@@ -1026,7 +1003,6 @@ nav button:hover::after {
     box-shadow: 0 0 10px #ff5555;
 }
 
-/* Separador vertical */
 .nav-divider {
     width: 1px;
     height: 25px;
@@ -1279,7 +1255,6 @@ nav button:hover::after {
     overflow: hidden;
 }
 
-/* AMENITIES CORREGIDAS (A LA FUERZA) */
 .amenities {
     display: flex;
     gap: 12px;
@@ -1289,10 +1264,8 @@ nav button:hover::after {
 
 .amenity {
     font-size: 16px !important;
-    /* FORZADO EN PIXELES */
     color: #fff;
     background: rgba(255, 255, 255, 0.4) !important;
-    /* OPACIDAD ALTA */
     padding: 8px 12px;
     border-radius: 5px;
     display: flex;
@@ -1318,7 +1291,6 @@ nav button:hover::after {
     text-decoration: none;
     display: block;
     font-size: 1.4rem;
-    /* Botón más legible */
 }
 
 .btn-book:hover {
@@ -1408,7 +1380,6 @@ nav button:hover::after {
     margin-bottom: 15px;
     color: #ddd;
     font-size: 1.4rem;
-    /* Texto resumen más grande */
 }
 
 .ticket-item span:last-child {
@@ -1422,7 +1393,6 @@ nav button:hover::after {
     padding-top: 20px;
     border-top: 1px dashed rgba(255, 255, 255, 0.3);
     font-size: 1.8rem;
-    /* Total gigante */
     font-weight: bold;
     color: #39ff14;
 }
@@ -1710,7 +1680,6 @@ nav button:hover::after {
     border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
     color: #ddd;
     font-size: 1.4rem;
-    /* Texto ticket más grande */
 }
 
 .detail-row:last-child {

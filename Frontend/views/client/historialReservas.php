@@ -42,14 +42,12 @@
             background-color: #050505 !important;
         }
 
-        /* GLASSMORPHISM OPACO Y OSCURO */
         .dark-glass {
             background-color: #0a0a0a;
             border: 1px solid #1f1f1f;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
-        /* ICONO GIGANTE (WATERMARK) */
         .giant-watermark {
             position: absolute;
             right: -20px;
@@ -57,27 +55,22 @@
             font-size: 8rem !important;
             color: white;
             opacity: 0.02;
-            /* Muy sutil por defecto */
             transform: rotate(0deg) scale(0.9);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* HOVER CARD */
         .history-card {
             transition: all 0.3s ease;
         }
 
         .history-card:hover {
             border-color: #00f3ff;
-            /* Cyan al hover */
             transform: translateY(-5px);
-            /* Levantamiento sutil */
             box-shadow: 0 10px 40px rgba(0, 243, 255, 0.1);
         }
 
-        /* ANIMACIÓN WATERMARK AL HOVER */
         .history-card:hover .giant-watermark {
             opacity: 0.08;
             transform: rotate(-15deg) scale(1.1);
@@ -85,7 +78,6 @@
             right: -10px;
         }
 
-        /* BADGES PERSONALIZADOS */
         .badge-status {
             backdrop-filter: blur(4px);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -133,18 +125,17 @@
                     <?php foreach ($eventos as $e): ?>
 
                         <?php
-                        // LÓGICA VISUAL SEGÚN ESTADO
                         $statusColor = 'text-warning border-warning/30 bg-warning/10';
-                        $iconWatermark = 'schedule'; // Default: Pendiente
-                        $glowClass = 'hover:shadow-yellow-500/10 hover:border-warning'; // Default Glow
-                
+                        $iconWatermark = 'schedule';
+                        $glowClass = 'hover:shadow-yellow-500/10 hover:border-warning';
+
                         if ($e['estado'] === 'Confirmado') {
                             $statusColor = 'text-neon border-neon/30 bg-neon/10';
-                            $iconWatermark = 'verified'; // Icono para confirmados
+                            $iconWatermark = 'verified';
                             $glowClass = 'hover:shadow-[0_0_30px_rgba(57,255,20,0.15)] hover:border-neon';
                         } elseif ($e['estado'] === 'Cancelado') {
                             $statusColor = 'text-danger border-danger/30 bg-danger/10';
-                            $iconWatermark = 'block'; // Icono para cancelados
+                            $iconWatermark = 'block';
                             $glowClass = 'hover:shadow-red-500/20 hover:border-danger';
                         }
                         ?>

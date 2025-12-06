@@ -383,31 +383,22 @@
         document.addEventListener('DOMContentLoaded', () => {
             const track = document.querySelector('.hive-track');
 
-            // CONFIGURACIÓN
-            let speed = 0.8; // Velocidad del auto-scroll (más alto = más rápido)
 
-            // VARIABLES DE ESTADO
+            let speed = 0.8;
             let position = 0;
             let isDragging = false;
             let startX = 0;
             let lastPosition = 0;
             let animationId;
-
-            // Calculamos el punto de reinicio (La mitad exacta del ancho total)
-            // Como duplicamos los items, cuando llegamos a la mitad, volvemos a 0 sin que se note.
-            // (260px ancho + 40px gap) * 12 items = 3600px
             const resetPoint = -3600;
 
-            // --- FUNCIÓN PRINCIPAL DE ANIMACIÓN (EL MOTOR) ---
+
             function animate() {
                 if (!isDragging) {
                     position -= speed;
-
-                    // Lógica del Loop Infinito
                     if (position <= resetPoint) {
                         position = 0;
                     }
-                    // Si arrastran hacia la derecha más allá del inicio
                     if (position > 0) {
                         position = resetPoint;
                     }
@@ -421,13 +412,13 @@
                 track.style.transform = `translateX(${position}px)`;
             }
 
-            // --- EVENTOS DEL MOUSE (ARRASTRAR) ---
+
 
             track.addEventListener('mousedown', (e) => {
                 isDragging = true;
-                track.classList.add('grabbing'); // Cambia el cursor
-                startX = e.pageX; // Guarda donde hiciste click
-                lastPosition = position; // Guarda donde estaba el carrusel
+                track.classList.add('grabbing');
+                startX = e.pageX;
+                lastPosition = position;
             });
 
             window.addEventListener('mouseup', () => {
@@ -438,17 +429,16 @@
             window.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
 
-                e.preventDefault(); // Evita seleccionar texto
+                e.preventDefault();
                 const currentX = e.pageX;
-                const diff = currentX - startX; // Cuánto moviste el mouse
+                const diff = currentX - startX;
 
-                // Mueve el carrusel sumando la diferencia a donde estaba antes
                 position = lastPosition + diff;
 
                 updatePosition();
             });
 
-            // --- EVENTOS TÁCTILES (PARA MÓVIL) ---
+
             track.addEventListener('touchstart', (e) => {
                 isDragging = true;
                 startX = e.touches[0].pageX;
@@ -467,34 +457,29 @@
                 updatePosition();
             });
 
-            // ENCENDEMOS EL MOTOR
+
             animate();
         });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Seleccionamos todas las tarjetas de reseña
+
             const cards = document.querySelectorAll('.arrow-card-wrapper');
 
-            // Configuración del Observador (El ojo que vigila el scroll)
             const observerOptions = {
-                threshold: 0.2, // Se activa cuando el 20% de la tarjeta es visible
+                threshold: 0.2,
                 rootMargin: "0px"
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // Si la tarjeta entra en pantalla...
                     if (entry.isIntersecting) {
-                        // ...le agregamos la clase 'visible' que activa el CSS
                         entry.target.classList.add('visible');
-                        // Dejamos de observarla (para que no se anime de nuevo al subir)
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Ponemos el observador a vigilar cada tarjeta
             cards.forEach(card => {
                 observer.observe(card);
             });

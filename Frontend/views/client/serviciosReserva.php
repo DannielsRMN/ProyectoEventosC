@@ -1,5 +1,4 @@
 <?php
-// Frontend/views/client/serviciosReserva.php
 
 if (!isset($_SESSION['reserva_temp'])) {
     header('Location: index.php?view=reservas');
@@ -29,7 +28,7 @@ $temp = $_SESSION['reserva_temp'];
                     },
                     fontFamily: {
                         brand: ['Orbitron', 'sans-serif'],
-                        body: ['Montserrat', 'sans-serif'] // O la que uses por defecto
+                        body: ['Montserrat', 'sans-serif']
                     }
                 }
             }
@@ -48,7 +47,6 @@ $temp = $_SESSION['reserva_temp'];
             background-color: #050505 !important;
         }
 
-        /* SCROLLBAR NEÓN */
         .custom-scroll::-webkit-scrollbar {
             width: 6px;
         }
@@ -66,40 +64,36 @@ $temp = $_SESSION['reserva_temp'];
             background: #39ff14;
         }
 
-        /* ESTILO DARK GLASS OPACO */
+
         .dark-glass {
             background: #0a0a0a;
-            /* Muy oscuro */
+
             border: 1px solid #222;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
         }
 
-        /* EFECTO WATERMARK GIGANTE */
+
         .giant-watermark {
             position: absolute;
             right: -20px;
             bottom: -30px;
             font-size: 8rem !important;
-            /* GIGANTE */
+
             color: white;
             opacity: 0;
-            /* Invisible por defecto */
+
             transform: rotate(0deg) scale(0.8);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            /* Efecto rebote suave */
             pointer-events: none;
             z-index: 0;
         }
 
-        /* ESTADO ACTIVO DEL WATERMARK */
         .service-card.active .giant-watermark {
             opacity: 0.05;
-            /* Apenas visible */
             transform: rotate(-15deg) scale(1);
             bottom: -15px;
         }
 
-        /* TEXTOS GRANDES */
         .big-text {
             font-size: 1.1rem;
         }
@@ -267,23 +261,20 @@ $temp = $_SESSION['reserva_temp'];
                 checkbox.checked = !checkbox.checked;
 
                 if (checkbox.checked) {
-                    // ACTIVO
-                    card.classList.add('active'); // Activa la animación del Watermark CSS
-                    card.classList.replace('border-gray-800', 'border-neon');
-                    card.classList.add('shadow-[0_0_30px_rgba(57,255,20,0.1)]'); // Glow verde sutil
 
-                    // Icono del check
+                    card.classList.add('active');
+                    card.classList.replace('border-gray-800', 'border-neon');
+                    card.classList.add('shadow-[0_0_30px_rgba(57,255,20,0.1)]');
+
                     iconContainer.classList.replace('border-gray-700', 'border-neon');
                     iconContainer.classList.replace('bg-[#050505]', 'bg-neon');
                     iconContainer.innerHTML = '<span class="material-symbols-rounded text-black font-bold">check</span>';
 
                 } else {
-                    // INACTIVO
                     card.classList.remove('active');
                     card.classList.replace('border-neon', 'border-gray-800');
                     card.classList.remove('shadow-[0_0_30px_rgba(57,255,20,0.1)]');
 
-                    // Icono del check
                     iconContainer.classList.replace('border-neon', 'border-gray-700');
                     iconContainer.classList.replace('bg-neon', 'bg-[#050505]');
                     iconContainer.innerHTML = '';
@@ -309,7 +300,6 @@ $temp = $_SESSION['reserva_temp'];
                         const name = cb.dataset.name;
                         servicesTotal += cost;
 
-                        // Item de lista
                         const row = document.createElement('div');
                         row.className = 'flex justify-between items-center text-gray-300 pb-2 border-b border-gray-800 last:border-0';
                         row.innerHTML = `
@@ -322,10 +312,8 @@ $temp = $_SESSION['reserva_temp'];
                     container.classList.add('hidden');
                 }
 
-                // Animación simple de conteo (opcional, aquí directo)
                 const grandTotal = baseCost + servicesTotal;
 
-                // Formatear moneda con comas
                 totalDisplay.innerText = grandTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             }
         </script>

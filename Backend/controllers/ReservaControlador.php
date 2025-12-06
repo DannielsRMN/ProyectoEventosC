@@ -34,7 +34,7 @@ class ReservaControlador
 
         require_once __DIR__ . '/../models/Servicio.php';
         $servicioModel = new Servicio();
-        $servicios = $servicioModel->listarServicios(); // Assuming this method exists
+        $servicios = $servicioModel->listarServicios();
 
         require_once 'Frontend/views/client/serviciosReserva.php';
     }
@@ -64,7 +64,6 @@ class ReservaControlador
     public function procesar()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Recalcular costo base desde la DB por seguridad
             $sedeModel = new Sede();
             $sedeInfo = $sedeModel->obtenerSedePorId($_POST['id_sede']);
             $costoBase = $sedeInfo ? $sedeInfo['precio_base'] : 0;
@@ -72,12 +71,12 @@ class ReservaControlador
             $_SESSION['reserva_temp'] = [
                 'nombre_evento' => $_POST['nombre_evento'],
                 'id_sede' => $_POST['id_sede'],
-                'id_tipo_evento' => $_POST['id_tipo_evento'], // Captura nuevo campo
+                'id_tipo_evento' => $_POST['id_tipo_evento'],
                 'nombre_sede' => $_POST['nombre_sede_hidden'],
                 'fecha' => $_POST['fecha'],
                 'hora_inicio' => $_POST['hora_inicio'],
                 'hora_fin' => $_POST['hora_fin'],
-                'costo_estimado' => $costoBase // Usar precio real de DB
+                'costo_estimado' => $costoBase
             ];
             header('Location: index.php?view=servicios_reserva');
             exit;
@@ -90,7 +89,6 @@ class ReservaControlador
             $serviciosSeleccionados = $_POST['servicios'] ?? [];
             $_SESSION['reserva_temp']['servicios'] = $serviciosSeleccionados;
 
-            // Recalcular total con servicios
             $servicesTotal = 0;
             if (!empty($serviciosSeleccionados)) {
                 require_once __DIR__ . '/../models/Servicio.php';
@@ -103,7 +101,6 @@ class ReservaControlador
                 }
             }
 
-            // Recalcular costo sede con horas
             $start = new DateTime($_SESSION['reserva_temp']['hora_inicio']);
             $end = new DateTime($_SESSION['reserva_temp']['hora_fin']);
             $diff = $start->diff($end);
@@ -147,7 +144,7 @@ class ReservaControlador
                     'fecha' => $data['fecha'],
                     'hora_inicio' => $data['hora_inicio'],
                     'hora_fin' => $data['hora_fin'],
-                    'costo' => $data['costo_total_final'], // Use calculated total
+                    'costo' => $data['costo_total_final'],
                     'servicios' => $data['servicios'] ?? []
                 ];
 
