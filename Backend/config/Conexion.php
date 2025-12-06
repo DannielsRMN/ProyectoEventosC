@@ -9,9 +9,9 @@ class Conexion {
 
     public function __construct(
         string $host = "localhost",
-        string $dbname = "EventosC",
+        string $dbname = "proyecto_eventos_c",
         string $username = "root",
-        string $password = "12345"
+        string $password = ""
     ) {
         $this->dsn = "mysql:host={$host};dbname={$dbname};charset=utf8mb4";
         $this->username = $username;

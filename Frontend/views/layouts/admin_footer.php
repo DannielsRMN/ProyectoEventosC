@@ -2,7 +2,7 @@
 
 <footer class="site-footer">
     <div class="footer-container">
-
+        
         <div class="footer-col brand-col">
             <img src="Frontend/assets/img/eventosclogo.png" alt="EventosC Logo" class="footer-logo">
             <p class="footer-tagline">Plataforma de gestión administrativa integral.</p>
@@ -38,11 +38,9 @@
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; <?php echo date('Y'); ?> EventosC Inc. Todos los derechos reservados. Panel Administrativo Privado.
-        </p>
+        <p>&copy; <?php echo date('Y'); ?> EventosC Inc. Todos los derechos reservados. Panel Administrativo Privado.</p>
     </div>
 </footer>
 
 </body>
-
 </html>

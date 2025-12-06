@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasarela de Pago | EventosC</title>
     <link rel="stylesheet" href="Frontend/assets/css/index.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-
 <body>
 
     <div id="loaderOverlay" class="loader-overlay">
@@ -20,9 +17,9 @@
 
     <?php require_once 'Frontend/views/layouts/header.php'; ?>
 
-    <?php
+    <?php 
     $info = isset($_SESSION['reserva_temp']) ? $_SESSION['reserva_temp'] : [];
-    if (empty($info)) {
+    if(empty($info)) {
         echo "<script>window.location='index.php?view=reservas';</script>";
         exit;
     }
@@ -30,7 +27,7 @@
 
     <div class="payment-wrapper">
         <div class="payment-container">
-
+            
             <div class="order-summary">
                 <div class="summary-header">
                     <h2>Resumen del Pedido</h2>
@@ -57,7 +54,7 @@
                     <span>Horario</span>
                     <span><?php echo $info['hora_inicio'] . ' - ' . $info['hora_fin']; ?></span>
                 </div>
-
+                
                 <div class="ticket-item total">
                     <span>TOTAL A PAGAR</span>
                     <span>S/ <?php echo number_format($info['costo_estimado'], 2); ?></span>
@@ -65,7 +62,7 @@
             </div>
 
             <div class="payment-form-section">
-
+                
                 <div class="card-visual">
                     <div class="card-chip"></div>
                     <div class="card-number-display" id="displayNum">#### #### #### ####</div>
@@ -73,30 +70,25 @@
                         <span id="displayName">NOMBRE TITULAR</span>
                         <span id="displayExp">MM/YY</span>
                     </div>
-                    <div
-                        style="position:absolute; bottom:20px; right:20px; font-weight:bold; font-style:italic; opacity:0.5;">
-                        VISA</div>
+                    <div style="position:absolute; bottom:20px; right:20px; font-weight:bold; font-style:italic; opacity:0.5;">VISA</div>
                 </div>
 
                 <form action="index.php?view=confirmar_pago" method="POST" id="paymentForm">
-
+                    
                     <div class="input-group">
                         <label class="input-label">Número de Tarjeta</label>
-                        <input type="text" class="cyber-input" placeholder="0000 0000 0000 0000" maxlength="19"
-                            oninput="updateCardNum(this)" required>
+                        <input type="text" class="cyber-input" placeholder="0000 0000 0000 0000" maxlength="19" oninput="updateCardNum(this)" required>
                     </div>
 
                     <div class="input-group">
                         <label class="input-label">Nombre del Titular</label>
-                        <input type="text" class="cyber-input" placeholder="COMO APARECE EN LA TARJETA"
-                            oninput="updateCardName(this)" required>
+                        <input type="text" class="cyber-input" placeholder="COMO APARECE EN LA TARJETA" oninput="updateCardName(this)" required>
                     </div>
 
                     <div class="row">
                         <div class="input-group" style="flex:1">
                             <label class="input-label">Expiración</label>
-                            <input type="text" class="cyber-input" placeholder="MM/YY" maxlength="5"
-                                oninput="updateCardExp(this)" required>
+                            <input type="text" class="cyber-input" placeholder="MM/YY" maxlength="5" oninput="updateCardExp(this)" required>
                         </div>
                         <div class="input-group" style="flex:1">
                             <label class="input-label">CVV</label>
@@ -107,10 +99,9 @@
                     <button type="submit" class="btn-pay">
                         PAGAR S/ <?php echo number_format($info['costo_estimado'], 2); ?>
                     </button>
-
+                    
                     <p style="text-align:center; color:#666; font-size:0.7rem; margin-top:15px;">
-                        <span class="material-symbols-rounded"
-                            style="font-size:10px; vertical-align:middle;">lock</span>
+                        <span class="material-symbols-rounded" style="font-size:10px; vertical-align:middle;">lock</span> 
                         Pagos procesados de forma segura con encriptación SSL.
                     </p>
                 </form>
@@ -123,9 +114,10 @@
     <?php require_once 'Frontend/views/layouts/footer.php'; ?>
 
     <script>
+        // Funciones visuales de la tarjeta
         function updateCardNum(el) {
             let val = el.value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
-            el.value = val;
+            el.value = val; 
             document.getElementById('displayNum').innerText = val || '#### #### #### ####';
         }
         function updateCardName(el) {
@@ -133,16 +125,16 @@
         }
         function updateCardExp(el) {
             let val = el.value.replace(/\D/g, '');
-            if (val.length >= 2) val = val.substring(0, 2) + '/' + val.substring(2, 4);
+            if (val.length >= 2) val = val.substring(0,2) + '/' + val.substring(2,4);
             el.value = val;
             document.getElementById('displayExp').innerText = val || 'MM/YY';
         }
 
-        document.getElementById('paymentForm').addEventListener('submit', function (e) {
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
+            
             document.getElementById('loaderOverlay').style.display = 'flex';
-
+            
             setTimeout(() => {
                 this.submit();
             }, 3000);
@@ -150,5 +142,4 @@
     </script>
 
 </body>
-
 </html>
