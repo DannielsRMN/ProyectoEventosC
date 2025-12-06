@@ -1,6 +1,5 @@
 <footer class="site-footer">
     <div class="footer-container">
-        
         <div class="footer-col brand-col">
             <img src="Frontend/assets/img/eventosclogo.png" alt="EventosC Logo" class="footer-logo">
             <p class="footer-tagline">Creando experiencias inolvidables, un evento a la vez.</p>
@@ -10,7 +9,6 @@
                 <a href="#" class="social-icon">TW</a>
             </div>
         </div>
-
         <div class="footer-col">
             <h4>Explora</h4>
             <ul>

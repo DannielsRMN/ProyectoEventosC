@@ -1,6 +1,7 @@
 <?php
 
-class Conexion {
+class Conexion
+{
     private $dsn;
     private $username;
     private $password;
@@ -18,7 +19,8 @@ class Conexion {
         $this->password = $password;
     }
 
-    public function iniciar(): ?PDO {
+    public function iniciar(): ?PDO
+    {
         try {
             if ($this->conexion === null) {
                 $this->conexion = new PDO(
@@ -34,7 +36,8 @@ class Conexion {
         }
     }
 
-    public function terminar(): void {
+    public function terminar(): void
+    {
         $this->conexion = null;
     }
 }

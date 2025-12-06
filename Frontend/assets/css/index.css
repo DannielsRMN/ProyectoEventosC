@@ -797,3 +797,108 @@ nav button:hover::after {
 .nav-next {
     right: 20px;
 }
+
+/* Footer Styles */
+.site-footer {
+    background-color: #050505;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 60px 0 20px;
+    margin-top: auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-col h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #3b82f6;
+    padding-left: 5px;
+}
+
+.brand-col .footer-logo {
+    height: 40px;
+    margin-bottom: 15px;
+    filter: brightness(0) invert(1);
+}
+
+.brand-col .footer-tagline {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon:hover {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
